@@ -32,11 +32,16 @@ public class MovimientoPersonaje : MonoBehaviour
     private CharacterController cuerpo;
     private Animator animaciones;
 
+    private Vector3 posicionInicial;
+    private Quaternion rotacionInicial;
     private void Start()
     {
         activar = true;
         animaciones = GetComponent<Animator>();
         cuerpo = GetComponent<CharacterController>();
+
+        posicionInicial = transform.position;
+        rotacionInicial = transform.rotation;
     }
 
     void Update()
@@ -69,8 +74,23 @@ public class MovimientoPersonaje : MonoBehaviour
 
         if (!estaEnPiso)
             velocidad.y += gravedad * Time.deltaTime;
-        Debug.Log(velocidad.y);
         EstadosAnimaciones();
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Muerte"))
+        {
+            velocidad.y = 0;
+            transform.position = posicionInicial;
+            transform.rotation = rotacionInicial;
+        }
+    }
+
+    public void AsiginarPosicion(Transform posicion)
+    {
+        posicionInicial = posicion.position;
+        rotacionInicial = posicion.rotation;
     }
     private void EstadosAnimaciones()
     {

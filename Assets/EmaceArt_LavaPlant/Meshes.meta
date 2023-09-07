@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: f44ca49654f59fa488eb79f3613e2b37
+=======
+guid: 35721e5bb0f068483bd3c5eb6a211a22
+>>>>>>> 0cf4d99 (anade elementos de ambiente a la rama derecha nivel fuego vigorizante)
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
